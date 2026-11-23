@@ -1,0 +1,61 @@
+# config.yaml
+active: bge_small_comment_notitle        # used when you don't pass --profile
+
+base:                          # defaults shared by every profile
+  embedding_model: BAAI/bge-small-en-v1.5
+  query_prefix: "Represent this sentence for searching relevant passages: "
+  doc_prefix: ""
+  max_input_tokens: 512
+  chunker: fixed               # fixed | comment
+  chunk_tokens: 400
+  overlap_tokens: 60
+  index_min_body_chars: 200
+  threads_path: data/threads.jsonl
+  db_path: data/wedding.duckdb
+  index_root: data/index
+ 
+
+profiles:                      # each profile overrides only what differs from base
+  bge_small_fixed: {}
+  bge_small_comment:
+    chunker: comment
+  minilm_fixed:
+    embedding_model: sentence-transformers/all-MiniLM-L6-v2
+    query_prefix: ""
+    max_input_tokens: 256
+    chunk_tokens: 200
+    overlap_tokens: 30
+  bge_small_fixed_c200:        # the clean model-vs-chunk-size comparison
+    chunk_tokens: 200
+    overlap_tokens: 30
+  bge_small_comment_notitle:
+    chunker: comment
+    title_prefix: false
+
+guard:
+  max_usd_per_run: 0.1
+  max_usd_per_day: 2.00
+  max_usd_total: 5.00
+  max_steps_per_run: 10
+  max_delegation_depth: 3
+  max_output_tokens_per_call: 2500
+  thinking_reserve_tokens: 0       # set > 0 if your model thinks; see the notes below
+  input_safety_margin: 1.1
+  repeat_limit: 3
+  ledger_path: data/ledger.db
+  models:                          # USD per 1M tokens: copy the model ID and prices from Google's pricing page
+    gemini-3.1-flash-lite:
+      input: 0.25
+      output: 1.50
+    gemini-3.5-flash-lite:
+      input: 0.3
+      output: 2.50
+
+defences:
+  input_screen: true
+  chunk_screen: true
+  leak_scan: true
+  sandwich: true
+
+judge:
+  model: gemini-3.5-flash-lite

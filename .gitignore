@@ -1,0 +1,31 @@
+# ── secrets ──────────────────────────────────────────
+config/config.local.yaml
+.env
+*.key
+
+# ── data and anything derived from it (Reddit text, indexes, spend history) ──
+data/
+logs/runs/
+logs/eval/
+
+# ── backups made by the tools ──
+golden/*.bak
+*.bak
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ── editors and OS ──
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
