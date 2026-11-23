@@ -226,20 +226,6 @@ python tools/show_run.py RUN_ID --full       # inspect any failing run
 Run summaries are saved in `logs/redteam/`. To tell whether a defence helps, compare `--defences off` with
 `--defences on`; a case that passes with defences off shows the model resisted on its own.
 
-## Results
-
-Fill these in from your own runs. Compare only results that share a golden-set hash.
-
-| Area | Result |
-|---|---|
-| Retrieval (hybrid, comment-aware, no title prefix): recall@5, hit@5, MRR | [fill in] |
-| "I don't know" gate: threshold, answerable kept, unanswerable refused | [fill in] |
-| Judge: claim-level supported rate, fully supported answers (all answerable / retrieved / not retrieved) | [fill in] |
-| Judge validation: damaged answers flagged, clean answers flagged | [fill in] |
-| Red team, defences off: failed runs / total | [fill in] |
-| Red team, defences on: failed runs / total | [fill in] |
-| Cost: RAG answer, budget request | about $0.0003 and $0.004 in my runs on a flash-lite model |
-
 ## Project layout
 
 ```
